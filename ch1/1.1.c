@@ -14,10 +14,10 @@
 	The tested word size is 8, but it should work when
 	word_size is other values. res_one stores the
 	computing result.
-*/
 
-/*
-	add_one test result:
+	'carry' store the carry of add_one function.
+	
+	add_one testing results:
 	~/.../ch1(master)$ ./a.out 
 	input two bit string, separated by new line:
 	00010110
@@ -32,24 +32,23 @@
 	the carry bit is: 1
 */
 
-//store the carry of add_one function.
-int carry_one = 0;
-int add_one(char *x, char *y, int word_size, char *res_one)
+int add_one(char *x, char *y, int word_size, char *res_one, int *carry)
 {
+	*carry = 0;
 	int i, tmp, j = word_size - 1;
 
 	for (i = word_size - 1; i >= 0; i--)
 		{
-			tmp = (int)(x[i] - 48) + (int)(y[i] - 48) + carry_one;
+			tmp = (int)(x[i] - 48) + (int)(y[i] - 48) + *carry;
 			
 			if (tmp == 0 || tmp == 1)
 				{
-					carry_one = 0;
+					*carry = 0;
 					res_one[i] = (char)(tmp + 48);
 				}
 			else
 				{
-					carry_one = 1;
+					*carry = 1;
 					res_one[i] = (char)((tmp - 2) + 48);
 				}
 		}
@@ -61,12 +60,14 @@ int main(int argc, char *argv[])
 	char *x = malloc(sizeof(char) * 8);
 	char *y = malloc(sizeof(char) * 8);
 	char *res_one = malloc(sizeof(char) * 8);
+	int *carry1 = malloc(sizeof(int))
+		;
 	printf("input two bit string, separated by new line:\n");
 	scanf("%s", x);
 	scanf("%s", y);
-	add_one(x, y, 8, res_one);
+	add_one(x, y, 8, res_one, carry1);
 	printf("the add of these two bit string: %s\n", res_one);
-	printf("the carry bit is: %d\n", carry_one);
+	printf("the carry bit is: %d\n", *carry1);
 	
 	return 0;
 }
