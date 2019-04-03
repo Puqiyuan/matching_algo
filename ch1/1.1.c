@@ -16,7 +16,11 @@
 	computing result.
 
 	'carry' store the carry of add_one function.
-	
+
+	For multiple word, you just need to specify the word_size to
+	different value, for example, the 3 words adds, specify
+	word_size to 24(when word size is 8), and input x and y string.
+ 		
 	add_one testing results:
 	~/.../ch1(master)$ ./a.out 
 	input two bit string, separated by new line:
@@ -35,7 +39,7 @@
 int add_one(char *x, char *y, int word_size, char *res_one, int *carry)
 {
 	*carry = 0;
-	int i, tmp, j = word_size - 1;
+	int i, tmp;
 
 	for (i = word_size - 1; i >= 0; i--)
 		{
@@ -60,8 +64,7 @@ int main(int argc, char *argv[])
 	char *x = malloc(sizeof(char) * 8);
 	char *y = malloc(sizeof(char) * 8);
 	char *res_one = malloc(sizeof(char) * 8);
-	int *carry1 = malloc(sizeof(int))
-		;
+	int *carry1 = malloc(sizeof(int));
 	printf("input two bit string, separated by new line:\n");
 	scanf("%s", x);
 	scanf("%s", y);
