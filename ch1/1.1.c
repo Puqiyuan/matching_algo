@@ -59,6 +59,18 @@ int add_one(char *x, char *y, int word_size, char *res_one, int *carry)
 	return 0;
 }
 
+/*todo:
+  int sub_one(char *x, char *y, int word_size, char *res_one, int *carry)
+  This function is used to subtract. There are two ways to achive this function
+  1: First to compare which binary string is bigger
+  then subtract smaller one from the other.
+  Finally to decide whether there is a negative sign.
+  2: No need to compare which one is bigger
+  but directly subtract then if there is a carry bit in result
+  it means we need to convert the two's complement to binary string:
+  minus one and negate.
+ */
+
 int main(int argc, char *argv[])
 {
 	char *x = malloc(sizeof(char) * 8);
